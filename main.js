@@ -65,13 +65,20 @@ for (let i = 0; i < posts.length; i++) {
     
     // Formatta le date in formato italiano (gg/mm/aaaa)
     let dataArr = posts[i].created.split("-");
-    let dataIta = dataArr[2] + "-" + dataArr[1] + "-" + dataArr[0]
+    let dataIta = dataArr[2] + "-" + dataArr[1] + "-" + dataArr[0];
 
-    // Fix momentaneo per l'avatar mancante
+    // Fix avatar mancante
     if(posts[i].author.image == null) {
-        posts[i].author.image = "https://media4.giphy.com/media/VRKheDy4DkBMrQm66p/giphy.gif";
-    }
+        // Fix momentaneo
+        posts[i].author.image = "missing-avatar.jpg";
 
+        // Genero le iniziali
+        let nomeCognomeArr = posts[i].author.name.split(" ")
+        let inizialiNome = nomeCognomeArr[0].charAt(0) + nomeCognomeArr[1].charAt(0);
+        console.log(nomeCognomeArr);
+        console.log(inizialiNome);
+    }
+    
     postContainer.innerHTML += `
         <div class="post">
             <div class="post__header">
@@ -104,6 +111,8 @@ for (let i = 0; i < posts.length; i++) {
             </div>            
         </div>
     `;
+
+    
 }
 
 for (let i = 0; i < posts.length; i++) {
