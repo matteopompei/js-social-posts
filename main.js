@@ -57,10 +57,15 @@ const posts = [
 ];
 
 
+
 let postContainer = document.getElementById("container");
 
 // Genera i post
 for (let i = 0; i < posts.length; i++) {
+    
+    // Formatta le date in formato italiano (gg/mm/aaaa)
+    let dataArr = posts[i].created.split("-");
+    let dataIta = dataArr[2] + "-" + dataArr[1] + "-" + dataArr[0]
 
     // Fix momentaneo per l'avatar mancante
     if(posts[i].author.image == null) {
@@ -76,7 +81,7 @@ for (let i = 0; i < posts.length; i++) {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${posts[i].author.name}</div>
-                        <div class="post-meta__time">${posts[i].created}</div>
+                        <div class="post-meta__time">${dataIta}</div>
                     </div>                    
                 </div>
             </div>
