@@ -59,6 +59,7 @@ const posts = [
 
 let postContainer = document.getElementById("container");
 
+// Genera i post
 for (let i = 0; i < posts.length; i++) {
 
     // Fix momentaneo per l'avatar mancante
@@ -102,7 +103,14 @@ for (let i = 0; i < posts.length; i++) {
 
 for (let i = 0; i < posts.length; i++) {
     document.querySelector(`[data-postid="${posts[i].id}"]`).addEventListener("click", function(){
-        document.querySelector(`[data-postid="${posts[i].id}"]`).classList.add("like-button--liked");
-        document.getElementById(`like-counter-${posts[i].id}`).innerHTML = posts[i].likes + 1;
+        if (document.querySelector(`[data-postid="${posts[i].id}"]`).classList.contains("like-button--liked")) {
+            // Rimuove il like
+            document.querySelector(`[data-postid="${posts[i].id}"]`).classList.remove("like-button--liked");
+            document.getElementById(`like-counter-${posts[i].id}`).innerHTML = posts[i].likes;
+        } else {
+            // Aggiunge il like
+            document.querySelector(`[data-postid="${posts[i].id}"]`).classList.add("like-button--liked");
+            document.getElementById(`like-counter-${posts[i].id}`).innerHTML = posts[i].likes + 1;
+        }
     });
 }
