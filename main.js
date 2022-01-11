@@ -67,16 +67,13 @@ for (let i = 0; i < posts.length; i++) {
     let dataArr = posts[i].created.split("-");
     let dataIta = dataArr[2] + "-" + dataArr[1] + "-" + dataArr[0];
 
-    // Fix avatar mancante
+    // Genero le iniziali
+    let nomeCognomeArr = posts[i].author.name.split(" ")
+    let inizialiNome = nomeCognomeArr[0].charAt(0) + nomeCognomeArr[1].charAt(0);
+    
+    // Fix momentaneo avatar mancante
     if(posts[i].author.image == null) {
-        // Fix momentaneo
         posts[i].author.image = "missing-avatar.jpg";
-
-        // Genero le iniziali
-        let nomeCognomeArr = posts[i].author.name.split(" ")
-        let inizialiNome = nomeCognomeArr[0].charAt(0) + nomeCognomeArr[1].charAt(0);
-        console.log(nomeCognomeArr);
-        console.log(inizialiNome);
     }
     
     postContainer.innerHTML += `
@@ -111,8 +108,6 @@ for (let i = 0; i < posts.length; i++) {
             </div>            
         </div>
     `;
-
-    
 }
 
 for (let i = 0; i < posts.length; i++) {
