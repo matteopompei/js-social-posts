@@ -60,6 +60,13 @@ const posts = [
 let postContainer = document.getElementById("container");
 
 for (key in posts) {
+
+    // Fix momentaneo per l'avatar mancante
+    if(posts[key].author.image == null) {
+        posts[key].author.image = "https://media4.giphy.com/media/VRKheDy4DkBMrQm66p/giphy.gif";
+        console.log(posts[key].author.image);        
+    }
+
     postContainer.innerHTML += `
         <div class="post">
             <div class="post__header">
@@ -80,7 +87,7 @@ for (key in posts) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="${posts[key].id}">
+                        <a class="like-button  js-like-button" href="#" id="${posts[key].id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -92,4 +99,6 @@ for (key in posts) {
             </div>            
         </div>
     `;
-  }
+
+
+}
