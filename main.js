@@ -111,7 +111,8 @@ for (let i = 0; i < posts.length; i++) {
 }
 
 for (let i = 0; i < posts.length; i++) {
-    document.querySelector(`[data-postid="${posts[i].id}"]`).addEventListener("click", function(){
+    document.querySelector(`[data-postid="${posts[i].id}"]`).addEventListener("click", function(e){
+        e.preventDefault();
         if (this.classList.contains("like-button--liked")) {
             // Rimuove il like
             this.classList.remove("like-button--liked");
