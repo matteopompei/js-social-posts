@@ -59,6 +59,7 @@ const posts = [
 
 
 let postContainer = document.getElementById("container");
+let proPic = null;
 
 // Genera i post
 for (let i = 0; i < posts.length; i++) {
@@ -68,20 +69,24 @@ for (let i = 0; i < posts.length; i++) {
     let dataIta = dataArr[2] + "-" + dataArr[1] + "-" + dataArr[0];
 
     // Genero le iniziali
-    let nomeCognomeArr = posts[i].author.name.split(" ")
-    let inizialiNome = nomeCognomeArr[0].charAt(0) + nomeCognomeArr[1].charAt(0);
+    let nomeCognomeArr = posts[i].author.name.split(" ");
+    let inizialiNome = nomeCognomeArr[0][0] + nomeCognomeArr[1][0];
     
-    // Fix momentaneo avatar mancante
+    // Fix avatar mancante
     if(posts[i].author.image == null) {
-        posts[i].author.image = "missing-avatar.jpg";
+        proPic = inizialiNome;
     }
+    else {
+        proPic = `<img class="profile-pic" src="${posts[i].author.image}" alt="${posts[i].author.name}">`;
+    }
+
     
     postContainer.innerHTML += `
         <div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${posts[i].author.image}" alt="${posts[i].author.name}">                    
+                        ${proPic}
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${posts[i].author.name}</div>
